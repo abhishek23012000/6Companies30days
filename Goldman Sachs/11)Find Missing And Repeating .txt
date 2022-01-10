@@ -1,0 +1,69 @@
+// { Driver Code Starts
+// Initial Template for Java
+
+import java.io.*;
+import java.util.*;
+
+class GFG {
+    // Driver code
+    public static void main(String[] args) throws Exception {
+        BufferedReader br =
+            new BufferedReader(new InputStreamReader(System.in));
+        int t = Integer.parseInt(br.readLine().trim());
+        while (t-- > 0) {
+            int n = Integer.parseInt(br.readLine().trim());
+            String[] str = br.readLine().split(" ");
+
+            int[] a = new int[n];
+            for (int i = 0; i < n; i++) {
+                a[i] = Integer.parseInt(str[i]);
+            }
+
+            int[] ans = new Solve().findTwoElement(a, n);
+            System.out.println(ans[0] + " " + ans[1]);
+        }
+    }
+}// } Driver Code Ends
+
+
+// User function Template for Java
+
+class Solve {
+    int[] findTwoElement(int arr[], int n)
+    {
+        // code here
+        int res[]=new int[2];
+        HashSet<Integer> s=new HashSet<>();
+        int dup=0;
+        for(int p:arr)
+        {
+            if(s.contains(p))
+            {
+                dup=p;
+                break;
+            }
+            
+            s.add(p);
+        }
+        
+        
+        int t=0;
+        int i=1;
+       while(i!=n+1)
+       {
+           t=t+i;
+           i++;
+       }
+        
+         int sum=0;
+         for(int p:arr)
+         {
+             sum=sum+p;
+         }
+         int sub=t-sum;
+         res[0]=dup;
+         res[1]=sub+dup;
+         return res;
+        
+    }
+}
